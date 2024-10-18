@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Create Room</title>
+</head>
+<body>
+    <h1>Create Room</h1>
+
+    <!-- Display flashed messages here -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert-container">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Room creation form -->
+    <form action="{{ url_for('create_room') }}" method="POST">
+        <label for="room_name">Room Name:</label>
+        <input type="text" id="room_name" name="room_name" required>
+        <button type="submit" class="menu-button">Create Room</button>
+    </form>
+
+    <!-- Buttons for navigation -->
+    <div class="button-group">
+        <!-- Button to go back to the menu -->
+        <a href="{{ url_for('menu') }}" class="menu-button">Back to Menu</a>
+
+        <!-- Button to list all rooms -->
+        <a href="{{ url_for('rooms') }}" class="rooms-button">List Rooms</a>
+    </div>
+</body>
+</html>

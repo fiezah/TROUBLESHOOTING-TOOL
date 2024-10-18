@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>User Info</title>
+</head>
+<body>
+    <h1>User Info</h1>
+    <div class="id-card">
+    <div class="user-info">
+        <img src="{{ user.avatar }}" alt="User Avatar" width="100" height="100">
+        <!-- User Information -->
+        <p><strong>Display Name:</strong> {{ user.displayName }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Organization ID:</strong> {{ user.orgId }}</p>
+    </div>
+    <!-- Button to go back to the menu -->
+    <a href="/menu" class="menu-button">Back to Menu</a>
+    </div>
+</body>
+</html>

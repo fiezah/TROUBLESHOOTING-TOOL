@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+
+    <!-- Alert Message for Success/Error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert-container">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Buttons for navigation -->
+    <div class="button-container">
+
+        <!-- Button to test the webex connection -->
+        <form action="{{ url_for('test_connection') }}" method="post">
+            <button type="submit" class="menu-button">Test Connection</button>
+        </form>
+        
+        <!-- Button to diplay the user information -->
+        <form action="{{ url_for('user_info') }}" method="get">
+            <button type="submit" class="menu-button">Display User Info</button>
+        </form>
+
+        <!-- Button to display all the rooms available -->
+        <form action="{{ url_for('rooms') }}" method="get">
+            <button type="submit" class="menu-button">List Rooms</button>
+        </form>
+        
+        <!-- Button to create a new room -->
+        <form action="{{ url_for('create_room') }}" method="get">
+            <button type="submit" class="menu-button">Create Room</button>
+        </form>
+
+        <!-- Button to send message in specific room -->
+        <form action="{{ url_for('send_message') }}" method="get">
+            <button type="submit" class="menu-button">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

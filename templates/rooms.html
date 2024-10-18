@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Rooms</title>
+</head>
+<body>
+    <h1>Rooms</h1>
+    <ul>
+        {% for room in rooms %}
+            <li style="margin-bottom: 10px;">
+                <!-- room information -->
+                <div>
+                    <strong>Room ID:</strong> {{ room.id }}<br>
+                    <strong>Room Title:</strong> {{ room.title }}<br>
+                    <strong>Created:</strong> {{ room.created }}<br>
+                    <strong>Last Activity:</strong> {{ room.lastActivity }}<br>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <!-- Button to go back to the menu -->
+    <a href="/menu" class="menu-button">Back to Menu</a>
+</body>
+</html>

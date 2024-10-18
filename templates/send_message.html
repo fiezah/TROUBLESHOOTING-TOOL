@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Send Message</title>
+</head>
+<body>
+    <!-- Display flashed messages here -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert-container">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <h1>Send Message</h1>
+    <div class="send-message">
+        <form action="{{ url_for('send_message') }}" method="post">
+            <!-- Dropdown for room selection -->
+            <label for="room-name">Select Room:</label>
+            <select id="room-name" name="room_id" required>
+                <option value="">-- Select a Room --</option>
+                {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.title }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Input for message -->
+            <input type="text" id="message" name="message" placeholder="Message" required>
+
+            <!-- Button to send message -->
+            <input type="submit" value="Send Message">
+        </form>
+    </div>
+
+    <div class="button-group">
+        <!-- Button to go back to the room list -->
+        <a href="/rooms" class="rooms-button">View All Rooms</a>
+        <!-- Button to go back to the menu -->
+        <a href="/menu" class="menu-button">Back to Menu</a>
+    </div>
+</body>
+</html>
